@@ -24,9 +24,9 @@ const Login = () => {
   const responseFacebook = (response) => {
     if (response) {
       login(response);
-      window.location.href = "/home";
+          window.location.href = "/home";
     } else {
-      alert("Algo deu errado!");
+          alert("Algo deu errado!");
     }
   };
 
@@ -37,9 +37,9 @@ const Login = () => {
   const responseGoogle = (response) => {
     if (response) {
       login(response);
-      window.location.href = "/home";
+         window.location.href = "/home";
     } else {
-      alert("Algo deu errado!");
+         alert("Algo deu errado!");
     }
   };
   return (
@@ -73,7 +73,6 @@ const Login = () => {
                   type="email"
                   placeholder="Digite seu email"
                   className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
-                  autofocus
                   {...register("email", {
                     required: true,
                   })}
@@ -89,8 +88,7 @@ const Login = () => {
                 <label className="block text-gray-700">Senha</label>
                 <input
                   type="password"
-                  placeholder="Digite sua senha"
-                  minlength="6"
+                  placeholder="Digite sua senha"            
                   className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                   {...register("password", {
                     required: true,
