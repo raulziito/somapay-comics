@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { userInfo } from "../../services/auth";
 import Container from "../../components/container/index.js";
 import { Link, useParams } from "react-router-dom";
-import spider from "../../assets/spider.png"
 import LoaderHq from "../../components/loaderhqs/index.js";
 
 const Home = () => {
@@ -72,7 +71,7 @@ const Home = () => {
                   className="md:text-5xl text-2xl font-bold leading-10 mt-3 text-gray-800 flex"
                 >
                   <p className="text-purple-900"> Procurar </p>{" "}
-                  <p className="ml-2 text-yellow-700">HQ</p>
+                  <p className="ml-2" style={{color: "#EB673C"}}>HQ</p>
                 </h2>
                 <p
                   role="contentinfo"
@@ -87,7 +86,7 @@ const Home = () => {
 										onChange={(e) => setHq(e.target.value)}
 										type="text"
 										placeholder="Quadrinho"
-										className="bg-white w-full focus:outline-none text-yellow-700"
+										className="bg-white w-full focus:outline-none" style={{color: "#EB673C"}}
 									/>
 								</div>
 							</div>
@@ -147,7 +146,7 @@ const Home = () => {
                           <h2 className="text-lg font-semibold text-gray-700">
                             {item.title}
                           </h2>
-                          <p className="text-xs text-yellow-600 pl-5">
+                          <p className="text-xs pl-5" style={{color: "#EB673C"}}>
                             {infoExtra.copyright}
                           </p>
                         </div>
@@ -159,7 +158,7 @@ const Home = () => {
                         </p>
                         <div className="flex mt-4">
                           <div>
-                            <p className="text-xs text-white px-2 bg-amber-600 rounded-full	 py-1">
+                            <p className="text-xs text-white px-2 rounded-full	py-1" style={{backgroundColor: "#EB673C"}}>
                               {item.format != ""
                                 ? item.format
                                 : "Sem informação"}
@@ -191,7 +190,7 @@ const Home = () => {
                {filterComics.length == 0 && (
             
                 <div className="flex justify-center w-full text-xs uppercase text-center">
-                    <p className="py-4 text-yellow-600 mx-4 text-xl uppercase"> NÃO FOI ENCONTRADO NENHUM QUADRINHO COM ESSE TÍTULO! </p>
+                    <p className="py-4 mx-4 text-xl uppercase" style={{color: "#EB673C"}}> NÃO FOI ENCONTRADO NENHUM QUADRINHO COM ESSE TÍTULO! </p>
                 </div>
            
                 )}
