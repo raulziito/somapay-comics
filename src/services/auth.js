@@ -7,7 +7,7 @@ export const getToken = () =>  localStorage.getItem(AUTENTICATE);
 
 export const login = token => {
  
-  if(token.name != undefined) {
+  if(token.name !== undefined) {
     localStorage.setItem(INFO, JSON.stringify(token));
     localStorage.setItem(AUTENTICATE,token.name);
   } else {

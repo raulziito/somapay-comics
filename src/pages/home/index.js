@@ -1,13 +1,14 @@
-import React, { Component, useState, useEffect, Fragment } from "react";
+import React, {
+ useState, useEffect, Fragment 
+} from 'react';
 import api from "../../services/api.js";
-import moment from "moment";
-import { useForm } from "react-hook-form";
-import { userInfo } from "../../services/auth";
-import Container from "../../components/container/index.js";
-import { Link, useParams } from "react-router-dom";
-import LoaderHq from "../../components/loaderhqs/index.js";
+import { useForm } from 'react-hook-form';
+import { userInfo } from '../../services/auth';
+import Container from '../../components/container/index.js';
+import { Link } from 'react-router-dom';
+import LoaderHq from '../../components/loaderhqs/index.js';
 
-const Home = () => {
+function Home() {
   const { register, handleSubmit, watch, setValue, errors, control } =
     useForm();
 
@@ -66,13 +67,12 @@ const Home = () => {
           <div className="xl:mx-auto xl:container py-20 2xl:px-0 px-6">
            
             <div className="w-full">
-            <h2
-                  role="heading"
+            <h2 
                   className="md:text-5xl text-2xl font-bold leading-10 mt-3 text-gray-800 flex"
                 >
                   <p className="text-purple-900"> Procurar </p>{" "}
                   <p className="ml-2" style={{color: "#EB673C"}}>HQ</p>
-                </h2>
+            </h2>
                 <p
                   role="contentinfo"
                   className="text-base leading-5 mt-5 text-gray-600"
@@ -81,12 +81,12 @@ const Home = () => {
                   Comics.
                 </p>
 							<div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 py-4 gap-4">
-								<div className="flex border rounded bg-white items-center p-2 ">
+								<div className="flex border rounded bg-white items-center p-2 border-purple-900 ">
 									<input
 										onChange={(e) => setHq(e.target.value)}
 										type="text"
 										placeholder="Quadrinho"
-										className="bg-white w-full focus:outline-none" style={{color: "#EB673C"}}
+										className="bg-white w-full focus:outline-none " style={{color: "#EB673C"}}
 									/>
 								</div>
 							</div>
@@ -99,12 +99,12 @@ const Home = () => {
          <LoaderHq/>
           ) : (
             <div className="flex flex-wrap items-center lg:justify-between justify-center">
-              {filterComics.map((item) => {
-                const capa =
-                  item.thumbnail.path + "." + item.thumbnail.extension;
+              {filterComics.map((item, index) => {
+                const capa =  item.thumbnail.path + "." + item.thumbnail.extension;
                 return (
-                  <>
+             
                   <Link
+                    key={index}
                   	to={{
                       pathname:  `/detalhe/${item.id}`,
                       state: {
@@ -112,9 +112,12 @@ const Home = () => {
                       },
                     }}
                   >
-                  <div className="cursor-pointer transform  hover:scale-105 transition duration-300 mx-2 w-72 lg:mb-5 mb-8 shadow-md">
+                  <div  
+                  className="cursor-pointer transform  hover:scale-105 transition duration-300 mx-2 w-72 lg:mb-5 mb-8 shadow-md">
                     <div>
-                      <img src={capa} className="w-full h-96 object-cover" />
+                      <img 
+                      alt="capa"
+                      src={capa} className="w-full h-96 object-cover" />
                     </div>
                     <div className="bg-white">
                       <div className="flex items-center justify-between px-4 pt-4">
@@ -137,7 +140,7 @@ const Home = () => {
                         </div>
                         <div className="bg-purple-900 py-1.5 px-6 rounded-full">
                           <p className="text-xs text-white">
-                            {item.dates[0].type !== null && <p> À venda </p>}
+                            {item.dates[0].type !== null && <span> À venda </span>}
                           </p>
                         </div>
                       </div>
@@ -152,14 +155,14 @@ const Home = () => {
                         </div>
                         <p className="text-xs text-gray-600 mt-2 truncate ">
                           {item.textObjects[0] == null && "Sem descrição"}
-                          {item.textObjects.map((item) => (
-                            <span>{item.text}</span>
+                          {item.textObjects.map((item, index) => (
+                            <span key={index}>{item.text}</span>
                           ))}
                         </p>
                         <div className="flex mt-4">
                           <div>
                             <p className="text-xs text-white px-2 rounded-full	py-1" style={{backgroundColor: "#EB673C"}}>
-                              {item.format != ""
+                              {item.format !== ""
                                 ? item.format
                                 : "Sem informação"}
                             </p>
@@ -168,9 +171,9 @@ const Home = () => {
                         <div className="flex items-center justify-between py-4">
                           <h2 className="text-indigo-700 text-xs font-semibold">
                             Criadore(s):{" "}
-                            {item.creators.items.map((item) => (
+                            {item.creators.items.map((item, index) => (
                               <>
-                                <span> {item.name}-</span>
+                                <span key={index}> {item.name}-</span>
                               </>
                             ))}
                           </h2>
@@ -183,14 +186,13 @@ const Home = () => {
                     </div>
                   </div>
                   </Link>
-                 
-                  </>
+                
                 );
               })}
-               {filterComics.length == 0 && (
+               {filterComics.length === 0 && (
             
                 <div className="flex justify-center w-full text-xs uppercase text-center">
-                    <p className="py-4 mx-4 text-xl uppercase" style={{color: "#EB673C"}}> NÃO FOI ENCONTRADO NENHUM QUADRINHO COM ESSE TÍTULO! </p>
+                    <p className="py-4 mx-4 text-xl uppercase" style={{color: "#EB673C"}}> NÃO FOI ENCONTRADO NENHUM QUADRINHO COM ESSE TÍTULO </p>
                 </div>
            
                 )}
@@ -201,6 +203,6 @@ const Home = () => {
       </Container>
     </>
   );
-};
+}
 
 export default Home;

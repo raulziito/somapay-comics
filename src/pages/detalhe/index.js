@@ -1,12 +1,9 @@
-import React, { Component, useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from 'react';
 import api from "../../services/api.js";
-import moment from "moment";
-import { useForm } from "react-hook-form";
-import { userInfo } from "../../services/auth";
-import Container from "../../components/container/index.js";
-import { Link, useParams } from "react-router-dom";
+import Container from '../../components/container/index.js';
+import { useParams } from 'react-router-dom';
 
-const Detalhe = (props) => {
+function Detalhe(props) {
   const id = useParams().id;
   const [show, setShow] = useState(true);
   const [comics, setComics] = useState([]);
@@ -42,23 +39,23 @@ const Detalhe = (props) => {
 
   return (
     <Container>
-      {comics.map((item) => {
+      {comics.map((item, index) => {
         const capa = item.thumbnail.path + "." + item.thumbnail.extension;
         return (
-          <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+          <div key={index} className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
             <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-              <img className="w-full"  src={capa} />
+              <img  alt="capa" className="w-full"  src={capa} />
             </div>
             <div className="md:hidden">
-              <img className="w-full"  src={capa} />
+              <img alt="capa" className="w-full"  src={capa} />
             </div>
             <div className="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
               <div className="border-b border-gray-200 pb-6">
                 <p className="text-sm leading-none text-gray-600">
                   Criadore(s):{" "}
-                  {item.creators.items.map((item) => (
+                  {item.creators.items.map((item, index) => (
                     <>
-                      <span> {item.name} - </span>
+                      <span key={index}> {item.name} - </span>
                     </>
                   ))}
                 </p>
@@ -71,7 +68,7 @@ const Detalhe = (props) => {
 							leading-7
 							text-gray-800
 							mt-2
-						"
+						  "
                 >
                   {item.title}
                 </h1>
@@ -94,27 +91,27 @@ const Detalhe = (props) => {
               </div>
               <button
                 className="
-						focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
-						text-base
-						flex
-						items-center
-						justify-center
-						leading-none
-						text-white
-						bg-purple-900
-						w-full
-						py-4
-                        rounded-md
-						hover:bg-purple-800
-					"
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
+                text-base
+                flex
+                items-center
+                justify-center
+                leading-none
+                text-white
+                bg-purple-900
+                w-full
+                py-4
+                            rounded-md
+                hover:bg-purple-800
+              "
               >
                 Quero ler!
               </button>
               <div>
                 <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 mt-7">
                   {item.textObjects[0] == null && "Sem descrição"}
-                  {item.textObjects.map((item) => (
-                    <span>{item.text}</span>
+                  {item.textObjects.map((item, index) => (
+                    <span key={index}>{item.text}</span>
                   ))}
                 </p>
                 <p className="text-base leading-4 mt-7 text-gray-600">
@@ -122,16 +119,16 @@ const Detalhe = (props) => {
                 </p>
                 <p className="text-base leading-4 mt-4 text-gray-600">
                   Número de páginas:{" "}
-                  {item.pageCount != 0 ? item.pageCount : "Sem informação"}
+                  {item.pageCount !== 0 ? item.pageCount : "Sem informação"}
                 </p>
                 <p className="text-base leading-4 mt-4 text-gray-600">
                   Lingua: {item.textObjects[0] == null && "Sem informação"}
-                  {item.textObjects.map((item) => (
-                    <span>{item.language}</span>
+                  {item.textObjects.map((item, index) => (
+                    <span key={index}>{item.language}</span>
                   ))}
                 </p>
                 <p className="text-base leading-4 mt-4 text-gray-600">
-                  Formato: {item.format != "" ? item.format : "Sem informação"}
+                  Formato: {item.format !== "" ? item.format : "Sem informação"}
                 </p>
               </div>
               <div>
@@ -179,17 +176,17 @@ const Detalhe = (props) => {
                     id="sect"
                   >
                     {person > 0 ? (
-                      characters.map((item) => {
+                      characters.map((item, index) => {
                         const personagem =
                           item.thumbnail.path + "." + item.thumbnail.extension;
-
                         return (
-                          <div className="flex flex-col justify-center ">
+
+                          <div key={index} className="flex flex-col justify-center ">
                             <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-md p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
                               <div className="w-full md:w-1/3 bg-white grid place-items-center">
                                 <img
                                   src={personagem}
-                                  alt="tailwind logo"
+                                  alt="personagem"
                                   className="rounded-xl"
                                 />
                               </div>
@@ -211,7 +208,7 @@ const Detalhe = (props) => {
                           <div className="w-full md:w-1/3 bg-white grid place-items-center">
                             <img
                               src="https://www.kindpng.com/picc/m/52-526072_unknown-character-hd-png-download.png"
-                              alt="tailwind logo"
+                              alt="personagem"
                               className="rounded-xl"
                             />
                           </div>
@@ -235,6 +232,6 @@ const Detalhe = (props) => {
       })}
     </Container>
   );
-};
+}
 
 export default Detalhe;

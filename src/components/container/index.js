@@ -1,8 +1,9 @@
 import Header from '../header';
 import Footer from '../footer';
 
-const Container = (props) => (
-    <>
+function Container(props) {
+   
+  return <>
 
         <Header data={props}/>
 
@@ -13,5 +14,5 @@ const Container = (props) => (
         <Footer/>
      
     </>
-)
+};
 export default Container;
